@@ -1,4 +1,4 @@
-package com.heyden.petclinic.entity;
+package petclinic.entity;
 
 public class Person {
 
