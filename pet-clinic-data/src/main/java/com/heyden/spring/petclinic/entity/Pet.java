@@ -1,4 +1,4 @@
-package petclinic.entity;
+package com.heyden.spring.petclinic.entity;
 
 import java.time.LocalDate;
 
