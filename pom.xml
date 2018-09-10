@@ -12,7 +12,7 @@
 	<packaging>pom</packaging>
 
 	<name>pet-clinic</name>
-	<description>Pet CLinic project for Spring Boot example</description>
+	<description>Pet Clinic project for Spring Boot example</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -44,15 +44,14 @@
 					<goals>
 						install
 					</goals>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
 	<scm>
-		<developerConnection>
-			scm:git:git@github.com:simhey314/pet-clinic.git
-		</developerConnection>
+		<developerConnection>scm:git:git@github.com:simhey314/pet-clinic.git</developerConnection>
 
 	  <tag>HEAD</tag>
   </scm>
