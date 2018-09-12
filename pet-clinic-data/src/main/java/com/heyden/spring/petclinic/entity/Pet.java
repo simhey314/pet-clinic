@@ -46,6 +46,6 @@ public class Pet extends BaseEntity<Long> {
 				"owner=" + owner +
 				", petType=" + petType +
 				", birthDate=" + birthDate +
-				'}';
+				"} " + super.toString();
 	}
 }

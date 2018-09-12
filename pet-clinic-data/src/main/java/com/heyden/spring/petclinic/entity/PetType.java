@@ -23,6 +23,6 @@ public class PetType extends BaseEntity<Long> {
 	public String toString() {
 		return "PetType{" +
 				"name='" + name + '\'' +
-				'}';
+				"} " + super.toString();
 	}
 }
