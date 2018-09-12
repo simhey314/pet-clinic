@@ -34,6 +34,6 @@ public class Person extends BaseEntity<Long> {
 		return "Person{" +
 				"firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
-				'}';
+				"} " + super.toString();
 	}
 }
