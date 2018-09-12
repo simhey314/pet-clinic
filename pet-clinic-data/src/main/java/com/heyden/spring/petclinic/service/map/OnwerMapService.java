@@ -2,7 +2,9 @@ package com.heyden.spring.petclinic.service.map;
 
 import com.heyden.spring.petclinic.entity.Owner;
 import com.heyden.spring.petclinic.service.OwnerService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OnwerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
 	@Override

@@ -4,8 +4,6 @@ import com.heyden.spring.petclinic.entity.Owner;
 import com.heyden.spring.petclinic.entity.Vet;
 import com.heyden.spring.petclinic.service.OwnerService;
 import com.heyden.spring.petclinic.service.VetService;
-import com.heyden.spring.petclinic.service.map.OnwerMapService;
-import com.heyden.spring.petclinic.service.map.VetMapService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -19,9 +17,9 @@ public class DataLoader implements CommandLineRunner {
 	private OwnerService ownerService;
 	private VetService vetService;
 
-	public DataLoader() {
-		ownerService = new OnwerMapService();
-		vetService = new VetMapService();
+	public DataLoader(final OwnerService ownerService, final VetService vetService) {
+		this.ownerService = ownerService;
+		this.vetService = vetService;
 	}
 
 	@Override
