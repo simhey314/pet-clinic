@@ -4,15 +4,15 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class BaseEntity<ID> implements Serializable {
+public class BaseEntity implements Serializable {
 	@Id
-	private ID id;
+	private Long id;
 
-	public ID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(final ID id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 

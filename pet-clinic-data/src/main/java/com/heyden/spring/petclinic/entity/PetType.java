@@ -1,6 +1,6 @@
 package com.heyden.spring.petclinic.entity;
 
-public class PetType extends BaseEntity<Long> {
+public class PetType extends BaseEntity {
 
 	private String name;
 

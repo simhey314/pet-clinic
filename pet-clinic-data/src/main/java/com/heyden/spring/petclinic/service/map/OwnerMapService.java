@@ -5,7 +5,7 @@ import com.heyden.spring.petclinic.service.OwnerService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OnwerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
 	@Override
 	public Owner findByLastName(final String lastName) {
