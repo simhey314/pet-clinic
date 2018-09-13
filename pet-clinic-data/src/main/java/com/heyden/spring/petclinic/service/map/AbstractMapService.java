@@ -26,7 +26,7 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 	public T save(final T entity) {
 
 		if (entity == null) {
-			throw new IllegalArgumentException("Entity cannot be null, cant save it");
+			throw new IllegalArgumentException("Entity cannot be null, cannot handle it");
 		}
 
 		if (entity.getId() == null) {
