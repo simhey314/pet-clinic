@@ -17,8 +17,14 @@ public class OwnerController {
 	}
 
 	@GetMapping({"", "/", "index", "index.html"})
-	public String listVets(Model model) {
+	public String listVets(final Model model) {
 		model.addAttribute("owners", ownerService.findAll());
 		return "owners/index";
 	}
+
+	@GetMapping("/find")
+	public String notImplemented() {
+		return "notYetImplemented";
+	}
+
 }
