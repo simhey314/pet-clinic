@@ -4,6 +4,10 @@ public class Person extends BaseEntity {
 
 	private String firstName;
 	private String lastName;
+	private String street;
+	private String city;
+	private String zip;
+	private String telephone;
 
 	public Person() {
 	}
@@ -29,11 +33,47 @@ public class Person extends BaseEntity {
 		this.lastName = lastName;
 	}
 
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(final String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(final String city) {
+		this.city = city;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(final String zip) {
+		this.zip = zip;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(final String telephone) {
+		this.telephone = telephone;
+	}
+
 	@Override
 	public String toString() {
 		return "Person{" +
 				"firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
+				", street='" + street + '\'' +
+				", city='" + city + '\'' +
+				", zip='" + zip + '\'' +
+				", telephone='" + telephone + '\'' +
 				"} " + super.toString();
 	}
 }
