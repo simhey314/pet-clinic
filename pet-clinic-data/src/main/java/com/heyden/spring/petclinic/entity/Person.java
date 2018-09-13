@@ -17,6 +17,15 @@ public class Person extends BaseEntity {
 		this.lastName = lastName;
 	}
 
+	public Person(final String firstName, final String lastName, final String street, final String city, final String zip, final String telephone) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.street = street;
+		this.city = city;
+		this.zip = zip;
+		this.telephone = telephone;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
