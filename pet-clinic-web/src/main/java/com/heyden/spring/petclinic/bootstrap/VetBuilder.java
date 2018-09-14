@@ -67,13 +67,7 @@ public final class VetBuilder {
 	}
 
 	public Vet build() {
-		final Vet vet = new Vet();
-		vet.setFirstName(firstName);
-		vet.setLastName(lastName);
-		vet.setStreet(street);
-		vet.setCity(city);
-		vet.setZip(zip);
-		vet.setTelephone(telephone);
+		final Vet vet = new Vet(firstName, lastName, street, city, zip, telephone);
 		vet.setSpecialities(specialities);
 		return vet;
 	}

@@ -5,6 +5,7 @@ import com.heyden.spring.petclinic.entity.Pet;
 import com.heyden.spring.petclinic.entity.PetType;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 public final class PetBuilder {
 	private Owner owner;
@@ -49,10 +50,6 @@ public final class PetBuilder {
 	}
 
 	public Pet build() {
-		final Pet pet = new Pet(name);
-		pet.setOwner(owner);
-		pet.setPetType(petType);
-		pet.setBirthDate(birthDate);
-		return pet;
+		return new Pet(owner, petType, birthDate, name, new HashSet<>());
 	}
 }

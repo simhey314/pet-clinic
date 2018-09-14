@@ -54,7 +54,7 @@ public class DataLoader implements CommandLineRunner {
 		petTypeService.save(cat);
 		final PetType dog = new PetType("Dog");
 		petTypeService.save(dog);
-		LOGGER.info("Loaded PetTypes to service");
+		LOGGER.info("Loaded PetTypes to service: " + petTypeService.getClass().getSimpleName());
 
 		final Pet pet1 = aPet()
 				.withName("Scoobi Doo")
@@ -90,14 +90,14 @@ public class DataLoader implements CommandLineRunner {
 						.withBirthDate(LocalDate.now())
 				).build();
 		ownerService.save(owner2);
-		LOGGER.info("Loaded Owners to service");
+		LOGGER.info("Loaded Owners to service: " + ownerService.getClass().getSimpleName());
 
 		final Visit visit1 = aVisit().withDescription("Get a new injection for love and happiness.").withDate(LocalDate.now()).withPet(pet1).build();
 		visitService.save(visit1);
 
 		final Visit visit2 = aVisit().withDescription("Repair the left leg").withDate(LocalDate.now()).withPet(pet2).build();
 		visitService.save(visit2);
-		LOGGER.info("Loaded Visits to service");
+		LOGGER.info("Loaded Visits to service: " + visitService.getClass().getSimpleName());
 	}
 
 	private void loadVets() {
@@ -107,7 +107,7 @@ public class DataLoader implements CommandLineRunner {
 		specialityService.save(surgery);
 		final Speciality dentistry = new Speciality("Dentistry");
 		specialityService.save(dentistry);
-		LOGGER.info("Loaded Specialities to service");
+		LOGGER.info("Loaded Specialities to service: " + specialityService.getClass().getSimpleName());
 
 		final Vet vet1 = aVet()
 				.withFirstName("First").withLastName("Vet")
@@ -123,6 +123,6 @@ public class DataLoader implements CommandLineRunner {
 				.withSpeciality(surgery).withSpeciality(radiology)
 				.build();
 		vetService.save(vet2);
-		LOGGER.info("Loaded Vets to service");
+		LOGGER.info("Loaded Vets to service: " + vetService.getClass().getSimpleName());
 	}
 }

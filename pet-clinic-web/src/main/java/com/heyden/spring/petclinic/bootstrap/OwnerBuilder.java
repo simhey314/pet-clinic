@@ -2,6 +2,7 @@ package com.heyden.spring.petclinic.bootstrap;
 
 import com.heyden.spring.petclinic.entity.Owner;
 import com.heyden.spring.petclinic.entity.Pet;
+import org.springframework.lang.NonNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -53,12 +54,12 @@ public class OwnerBuilder {
 		return this;
 	}
 
-	public OwnerBuilder withPet(final PetBuilder petBuilder) {
+	public OwnerBuilder withPet(@NonNull final PetBuilder petBuilder) {
 		petBuilders.add(petBuilder);
 		return this;
 	}
 
-	public OwnerBuilder withPet(final Pet pet) {
+	public OwnerBuilder withPet(@NonNull final Pet pet) {
 		pets.add(pet);
 		return this;
 	}
