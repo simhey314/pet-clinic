@@ -1,21 +1,27 @@
 package com.heyden.spring.petclinic.bootstrap;
 
 import com.heyden.spring.petclinic.entity.Owner;
+import com.heyden.spring.petclinic.entity.Pet;
 import com.heyden.spring.petclinic.entity.PetType;
 import com.heyden.spring.petclinic.entity.Speciality;
 import com.heyden.spring.petclinic.entity.Vet;
+import com.heyden.spring.petclinic.entity.Visit;
 import com.heyden.spring.petclinic.service.OwnerService;
 import com.heyden.spring.petclinic.service.PetTypeService;
 import com.heyden.spring.petclinic.service.SpecialityService;
 import com.heyden.spring.petclinic.service.VetService;
+import com.heyden.spring.petclinic.service.VisitService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 import static com.heyden.spring.petclinic.bootstrap.OwnerBuilder.aOwner;
 import static com.heyden.spring.petclinic.bootstrap.PetBuilder.aPet;
 import static com.heyden.spring.petclinic.bootstrap.VetBuilder.aVet;
+import static com.heyden.spring.petclinic.bootstrap.VisitBuilder.aVisit;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -26,12 +32,14 @@ public class DataLoader implements CommandLineRunner {
 	private VetService vetService;
 	private PetTypeService petTypeService;
 	private SpecialityService specialityService;
+	private VisitService visitService;
 
-	public DataLoader(final OwnerService ownerService, final VetService vetService, final PetTypeService petTypeService, final SpecialityService specialityService) {
+	public DataLoader(final OwnerService ownerService, final VetService vetService, final PetTypeService petTypeService, final SpecialityService specialityService, final VisitService visitService) {
 		this.ownerService = ownerService;
 		this.vetService = vetService;
 		this.petTypeService = petTypeService;
 		this.specialityService = specialityService;
+		this.visitService = visitService;
 	}
 
 	@Override
@@ -55,6 +63,7 @@ public class DataLoader implements CommandLineRunner {
 				.withPet(aPet()
 						.withName("Scoobi Doo")
 						.withPetType(dog)
+						.withBirthDate(LocalDate.now())
 				).build();
 		ownerService.save(owner1);
 		final Owner owner2 = aOwner()
@@ -64,15 +73,26 @@ public class DataLoader implements CommandLineRunner {
 				.withPet(aPet()
 						.withName("Pussy")
 						.withPetType(cat)
+						.withBirthDate(LocalDate.now())
 				).withPet(aPet()
 						.withName("Kitty")
 						.withPetType(cat)
+						.withBirthDate(LocalDate.now())
 				).withPet(aPet()
 						.withName("Bud")
 						.withPetType(dog)
+						.withBirthDate(LocalDate.now())
 				).build();
 		ownerService.save(owner2);
 		LOGGER.info("Loaded Owners to map service");
+
+		Pet pet = owner1.getPets().iterator().next();
+		final Visit visit1 = aVisit().withDescription("Get a new injection for love and happiness.").withDate(LocalDate.now()).withPet(pet).build();
+		visitService.save(visit1);
+		pet = owner2.getPets().iterator().next();
+		final Visit visit2 = aVisit().withDescription("Repair the left leg").withDate(LocalDate.now()).withPet(pet).build();
+		visitService.save(visit2);
+		LOGGER.info("Loaded Visits to map service");
 	}
 
 	private void loadVets() {
