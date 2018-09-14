@@ -60,7 +60,10 @@ public class OwnerBuilder {
 	public Owner build() {
 		final Owner owner = new Owner(firstName, lastName, street, city, zip, telephone);
 		final Set<Pet> pets = new HashSet<>();
-		petBuilders.forEach(petBuilder -> pets.add(petBuilder.build()));
+		petBuilders.forEach(petBuilder -> {
+			petBuilder.withOwner(owner);
+			pets.add(petBuilder.build());
+		});
 		owner.setPets(pets);
 		return owner;
 	}
