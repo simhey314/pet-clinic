@@ -15,26 +15,31 @@ public abstract class AbstractJPAService<T, ID, R extends CrudRepository<T, ID>>
 		this.repository = repository;
 	}
 
+	@Override
 	public Set<T> findAll() {
-		Set<T> values = new HashSet<>();
+		final Set<T> values = new HashSet<>();
 		repository.findAll().iterator().forEachRemaining(values::add);
 		return values;
 	}
 
+	@Override
 	@Nullable
-	public T findById(ID id) {
+	public T findById(final ID id) {
 		return repository.findById(id).orElse(null);
 	}
 
-	public T save(T entity) {
+	@Override
+	public T save(final T entity) {
 		return repository.save(entity);
 	}
 
-	public void delete(T entity) {
+	@Override
+	public void delete(final T entity) {
 		repository.save(entity);
 	}
 
-	public void deleteById(ID id) {
+	@Override
+	public void deleteById(final ID id) {
 		repository.deleteById(id);
 	}
 }
