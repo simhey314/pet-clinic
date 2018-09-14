@@ -14,6 +14,7 @@ public class OwnerBuilder {
 	private String zip;
 	private String telephone;
 	private Set<PetBuilder> petBuilders = new HashSet<>();
+	private Set<Pet> pets = new HashSet<>();
 
 	private OwnerBuilder() {
 	}
@@ -57,14 +58,15 @@ public class OwnerBuilder {
 		return this;
 	}
 
+	public OwnerBuilder withPet(final Pet pet) {
+		pets.add(pet);
+		return this;
+	}
+
 	public Owner build() {
 		final Owner owner = new Owner(firstName, lastName, street, city, zip, telephone);
-		final Set<Pet> pets = new HashSet<>();
-		petBuilders.forEach(petBuilder -> {
-			petBuilder.withOwner(owner);
-			pets.add(petBuilder.build());
-		});
-		owner.setPets(pets);
+		petBuilders.forEach(petBuilder -> owner.addPet(petBuilder.build()));
+		pets.forEach(owner::addPet);
 		return owner;
 	}
 }

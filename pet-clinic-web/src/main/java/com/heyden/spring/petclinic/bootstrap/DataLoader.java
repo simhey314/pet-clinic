@@ -54,18 +54,28 @@ public class DataLoader implements CommandLineRunner {
 		petTypeService.save(cat);
 		final PetType dog = new PetType("Dog");
 		petTypeService.save(dog);
-		LOGGER.info("Loaded PetTypes to map service");
+		LOGGER.info("Loaded PetTypes to service");
+
+		final Pet pet1 = aPet()
+				.withName("Scoobi Doo")
+				.withPetType(dog)
+				.withBirthDate(LocalDate.now())
+				.build();
 
 		final Owner owner1 = aOwner()
 				.withFirstName("First").withLastName("Owner")
 				.withStreet("Street").withCity("City").withZip("12345")
 				.withTelephone("+491234567890")
-				.withPet(aPet()
-						.withName("Scoobi Doo")
-						.withPetType(dog)
-						.withBirthDate(LocalDate.now())
-				).build();
+				.withPet(pet1)
+				.build();
 		ownerService.save(owner1);
+
+		final Pet pet2 = aPet()
+				.withName("Kitty")
+				.withPetType(cat)
+				.withBirthDate(LocalDate.now())
+				.build();
+
 		final Owner owner2 = aOwner()
 				.withFirstName("Second").withLastName("Owner")
 				.withStreet("Road").withCity("Village").withZip("654321")
@@ -74,25 +84,20 @@ public class DataLoader implements CommandLineRunner {
 						.withName("Pussy")
 						.withPetType(cat)
 						.withBirthDate(LocalDate.now())
-				).withPet(aPet()
-						.withName("Kitty")
-						.withPetType(cat)
-						.withBirthDate(LocalDate.now())
-				).withPet(aPet()
+				).withPet(pet2).withPet(aPet()
 						.withName("Bud")
 						.withPetType(dog)
 						.withBirthDate(LocalDate.now())
 				).build();
 		ownerService.save(owner2);
-		LOGGER.info("Loaded Owners to map service");
+		LOGGER.info("Loaded Owners to service");
 
-		Pet pet = owner1.getPets().iterator().next();
-		final Visit visit1 = aVisit().withDescription("Get a new injection for love and happiness.").withDate(LocalDate.now()).withPet(pet).build();
+		final Visit visit1 = aVisit().withDescription("Get a new injection for love and happiness.").withDate(LocalDate.now()).withPet(pet1).build();
 		visitService.save(visit1);
-		pet = owner2.getPets().iterator().next();
-		final Visit visit2 = aVisit().withDescription("Repair the left leg").withDate(LocalDate.now()).withPet(pet).build();
+
+		final Visit visit2 = aVisit().withDescription("Repair the left leg").withDate(LocalDate.now()).withPet(pet2).build();
 		visitService.save(visit2);
-		LOGGER.info("Loaded Visits to map service");
+		LOGGER.info("Loaded Visits to service");
 	}
 
 	private void loadVets() {
@@ -102,7 +107,7 @@ public class DataLoader implements CommandLineRunner {
 		specialityService.save(surgery);
 		final Speciality dentistry = new Speciality("Dentistry");
 		specialityService.save(dentistry);
-		LOGGER.info("Loaded Specialities to map service");
+		LOGGER.info("Loaded Specialities to service");
 
 		final Vet vet1 = aVet()
 				.withFirstName("First").withLastName("Vet")
@@ -118,6 +123,6 @@ public class DataLoader implements CommandLineRunner {
 				.withSpeciality(surgery).withSpeciality(radiology)
 				.build();
 		vetService.save(vet2);
-		LOGGER.info("Loaded Vets to map service");
+		LOGGER.info("Loaded Vets to service");
 	}
 }

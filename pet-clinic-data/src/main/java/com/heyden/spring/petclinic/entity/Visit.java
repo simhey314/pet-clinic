@@ -11,6 +11,8 @@ import java.time.LocalDate;
 public class Visit extends BaseEntity {
 
 	private LocalDate date;
+	@ManyToOne
+	@JoinColumn(name = "pet_id")
 	private Pet pet;
 	private String description;
 
@@ -22,8 +24,6 @@ public class Visit extends BaseEntity {
 		this.date = date;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "pet_id")
 	public Pet getPet() {
 		return pet;
 	}
