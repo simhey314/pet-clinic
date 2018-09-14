@@ -4,10 +4,12 @@ import com.heyden.spring.petclinic.entity.Owner;
 import com.heyden.spring.petclinic.service.OwnerService;
 import com.heyden.spring.petclinic.service.PetService;
 import com.heyden.spring.petclinic.service.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
 	private PetTypeService petTypeService;

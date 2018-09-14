@@ -3,10 +3,12 @@ package com.heyden.spring.petclinic.service.map;
 import com.heyden.spring.petclinic.entity.Vet;
 import com.heyden.spring.petclinic.service.SpecialityService;
 import com.heyden.spring.petclinic.service.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile({"default", "map"})
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
 	private SpecialityService specialityService;

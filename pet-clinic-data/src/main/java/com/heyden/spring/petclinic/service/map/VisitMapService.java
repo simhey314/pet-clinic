@@ -2,10 +2,12 @@ package com.heyden.spring.petclinic.service.map;
 
 import com.heyden.spring.petclinic.entity.Visit;
 import com.heyden.spring.petclinic.service.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile({"default", "map"})
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
 	@Override
