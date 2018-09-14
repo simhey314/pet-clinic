@@ -4,6 +4,7 @@ import com.heyden.spring.petclinic.entity.Owner;
 import com.heyden.spring.petclinic.service.OwnerService;
 import com.heyden.spring.petclinic.service.PetService;
 import com.heyden.spring.petclinic.service.PetTypeService;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,11 +19,13 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 	}
 
 	@Override
+	@Nullable
 	public Owner findByLastName(final String lastName) {
 		return null;
 	}
 
 	@Override
+	@Nullable
 	public Owner save(final Owner entity) {
 		if (entity == null) {
 			return null;
