@@ -1,7 +1,13 @@
 package com.heyden.spring.petclinic.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "visits")
 public class Visit extends BaseEntity {
 
 	private LocalDate date;
@@ -16,6 +22,8 @@ public class Visit extends BaseEntity {
 		this.date = date;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "pet_id")
 	public Pet getPet() {
 		return pet;
 	}
