@@ -4,6 +4,7 @@ import com.heyden.spring.petclinic.entity.Owner;
 import com.heyden.spring.petclinic.repository.OwnerRepository;
 import com.heyden.spring.petclinic.repository.PetRepository;
 import com.heyden.spring.petclinic.repository.PetTypeRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,6 +31,7 @@ class OwnerJPAServiceTest {
 	OwnerJPAService underTest;
 	private Owner expectedOwner;
 
+	@BeforeEach
 	private void setup() {
 		expectedOwner = new Owner();
 		expectedOwner.setId(1L);
