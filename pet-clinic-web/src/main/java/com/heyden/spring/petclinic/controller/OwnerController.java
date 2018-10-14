@@ -9,8 +9,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -24,7 +26,7 @@ public class OwnerController {
 	}
 
 	@InitBinder
-	public void setAllowdFields(WebDataBinder dataBinder) {
+	public void setAllowFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
 
@@ -62,4 +64,44 @@ public class OwnerController {
 		return "owners/details";
 	}
 
+	@GetMapping("/{id}/delete")
+	public String deleteOwner(@PathVariable Long id) {
+		ownerService.deleteById(id);
+		return "redirect:/owners/";
+	}
+
+	@GetMapping("/{id}/edit")
+	public String editOwner(@PathVariable Long id, Model model) {
+		model.addAttribute("owner", ownerService.findById(id));
+		return "owners/edit";
+	}
+
+	@PostMapping("/{id}/edit")
+	public String saveEditOwner(@Valid Owner unsavedOwner, BindingResult bindingResult, @PathVariable Long id) {
+		unsavedOwner.setId(id);
+		return saveOwner(unsavedOwner, bindingResult.hasErrors());
+	}
+
+	@GetMapping("/new")
+	public String newOwner(Model model) {
+		model.addAttribute("owner", new Owner());
+		return "owners/edit";
+	}
+
+	@PostMapping("/new")
+	public String saveNewOwner(@Valid Owner newOwner, BindingResult bindingResult) {
+		newOwner.setId(0L);
+		return saveOwner(newOwner, bindingResult.hasErrors());
+	}
+
+	private String saveOwner(final @Valid Owner unsavedOwner, final boolean hasErrors) {
+		String view;
+		if (hasErrors) {
+			view = "owners/edit";
+		} else {
+			Owner saveResult = ownerService.save(unsavedOwner);
+			view = "redirect:/owners/" + saveResult.getId();
+		}
+		return view;
+	}
 }

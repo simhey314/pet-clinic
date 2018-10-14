@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'owners', 'owners.edit.title')}">
 <head>
 	<meta charset="UTF-8">
 	<title>List of owners</title>
@@ -8,23 +9,18 @@
 <h2>Owner</h2>
 <form th:object="${owner}" class="form-horizontal" id="add-owner-form" method="post">
 	<div class="form-group has-feedback">
-		<input
-				th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}"/>
-		<input
-				th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}"/>
-		<input
-				th:replace="~{fragments/inputField :: input ('Address', 'address', 'text')}"/>
-		<input
-				th:replace="~{fragments/inputField :: input ('City', 'city', 'text')}"/>
-		<input
-				th:replace="~{fragments/inputField :: input ('Telephone', 'telephone', 'text')}"/>
+		<input th:replace="~{fragments/inputField :: input ('property.person.firstName', 'firstName', 'text')}"/>
+		<input th:replace="~{fragments/inputField :: input ('property.person.lastName', 'lastName', 'text')}"/>
+		<input th:replace="~{fragments/inputField :: input ('property.person.street', 'street', 'text')}"/>
+		<input th:replace="~{fragments/inputField :: input ('property.person.city', 'city', 'text')}"/>
+		<input th:replace="~{fragments/inputField :: input ('property.person.zip', 'zip', 'text')}"/>
+		<input th:replace="~{fragments/inputField :: input ('property.person.telephone', 'telephone', 'text')}"/>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button
-					th:with="text=${owner['new']} ? 'Add Owner' : 'Update Owner'"
-					class="btn btn-default" type="submit" th:text="${text}">Add
-				Owner
+			<button th:with="text=${owner.isNew()} ? 'owners.edit.input.button.submit.add' : 'owners.edit.input.button.submit.update'"
+			        class="btn btn-default" type="submit"
+			        th:text="#{__${text}__}">Add Owner
 			</button>
 		</div>
 	</div>

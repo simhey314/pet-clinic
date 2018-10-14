@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'owners', 'owners.list.title')}">
 <head>
 	<meta charset="UTF-8">
 	<title>List of owners</title>
@@ -10,10 +11,12 @@
 <table class="table table-striped">
 	<thead>
 	<tr>
-		<th th:text="#{owners.index.list.thead.id}">ID</th>
-		<th th:text="#{owners.index.list.thead.firstName}">First name</th>
-		<th th:text="#{owners.index.list.thead.lastName}">Last name</th>
-		<th th:text="#{owners.list.list.thead.pets}">Pets</th>
+		<th th:text="#{property.baseEntity.id}">ID</th>
+		<th th:text="#{property.person.firstName}">First name</th>
+		<th th:text="#{property.person.lastName}">Last name</th>
+		<th th:text="#{property.owner.pets}">Pets</th>
+		<th th:text="#{actions}">Actions</th>
+
 	</tr>
 	</thead>
 	<tbody>
@@ -22,6 +25,11 @@
 		<td th:text="${owner.firstName}">First name</td>
 		<td th:text="${owner.lastName}">Last name</td>
 		<td><span th:each="pet : ${owner.pets}" th:text="${pet.name}"></span></td>
+		<td>
+			<a href="#" th:href="@{owners/{id}(id=${owner.id})}" th:text="#{actions.details}" class="btn btn-default">Details</a>
+			<a href="#" th:href="@{owners/{id}/delete(id=${owner.id})}" th:text="#{actions.delete}"
+			   class="btn btn-default">Delete</a>
+		</td>
 	</tr>
 	</tbody>
 </table>
