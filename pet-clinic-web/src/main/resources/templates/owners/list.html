@@ -5,13 +5,15 @@
 	<title>List of owners</title>
 </head>
 <body>
-<h2 th:text="#{owners.index.title}">Owners Index Page</h2>
+<!--/*@thymesVar id="owners" type="java.util.List<com.heyden.spring.petclinic.entity.Owner>"*/-->
+<h2 th:text="#{owners.list.title}">Owners List Page</h2>
 <table class="table table-striped">
 	<thead>
 	<tr>
 		<th th:text="#{owners.index.list.thead.id}">ID</th>
 		<th th:text="#{owners.index.list.thead.firstName}">First name</th>
 		<th th:text="#{owners.index.list.thead.lastName}">Last name</th>
+		<th th:text="#{owners.list.list.thead.pets}">Pets</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -19,6 +21,7 @@
 		<td th:text="${owner.id}">ID</td>
 		<td th:text="${owner.firstName}">First name</td>
 		<td th:text="${owner.lastName}">Last name</td>
+		<td><span th:each="pet : ${owner.pets}" th:text="${pet.name}"></span></td>
 	</tr>
 	</tbody>
 </table>

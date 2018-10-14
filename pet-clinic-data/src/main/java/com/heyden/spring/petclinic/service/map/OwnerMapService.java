@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
@@ -27,6 +30,13 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 				.filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
 				.findFirst()
 				.orElse(null);
+	}
+
+	@Override
+	public List<Owner> findAllByLastNameLike(final String lastName) {
+		return map.values().stream()
+				.filter(owner -> owner.getLastName() != null && owner.getLastName().contains(lastName))
+				.collect(Collectors.toList());
 	}
 
 	@Override

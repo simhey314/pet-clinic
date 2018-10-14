@@ -63,7 +63,7 @@ public class DataLoader implements CommandLineRunner {
 				.build();
 
 		final Owner owner1 = aOwner()
-				.withFirstName("First").withLastName("Owner")
+				.withFirstName("First").withLastName("Owner1")
 				.withStreet("Street").withCity("City").withZip("12345")
 				.withTelephone("+491234567890")
 				.withPet(pet1)
@@ -77,7 +77,7 @@ public class DataLoader implements CommandLineRunner {
 				.build();
 
 		final Owner owner2 = aOwner()
-				.withFirstName("Second").withLastName("Owner")
+				.withFirstName("Second").withLastName("Owner2")
 				.withStreet("Road").withCity("Village").withZip("654321")
 				.withTelephone("+499876543210")
 				.withPet(aPet()

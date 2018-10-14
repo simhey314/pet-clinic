@@ -8,6 +8,8 @@ import com.heyden.spring.petclinic.service.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Profile("jpa")
 public class OwnerJPAService extends AbstractJPAService<Owner, Long, OwnerRepository> implements OwnerService {
@@ -24,5 +26,10 @@ public class OwnerJPAService extends AbstractJPAService<Owner, Long, OwnerReposi
 	@Override
 	public Owner findByLastName(final String lastName) {
 		return repository.findByLastNameLike(lastName);
+	}
+
+	@Override
+	public List<Owner> findAllByLastNameLike(final String lastName) {
+		return repository.findAllByLastNameContainingIgnoreCase(lastName);
 	}
 }
